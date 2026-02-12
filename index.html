@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turbox File Converter</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Libraries for Client-Side Conversion -->
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js?v=new2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+</head>
+
+<body>
+    <header class="hero-section">
+        <div class="container">
+            <h1>&#128640; Turbox File Converter</h1>
+            <p class="subtitle">Convert, edit, split, compress PDFs - all in your browser. 100% free
+                and secure.</p>
+
+            <div class="process-steps">
+                <div class="step">
+                    <div class="icon-box"><i class="fas fa-cloud-upload-alt"></i></div>
+                    <span>Upload</span>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step">
+                    <div class="icon-box"><i class="fas fa-exchange-alt"></i></div>
+                    <span>Convert</span>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step">
+                    <div class="icon-box"><i class="fas fa-download"></i></div>
+                    <span>Download</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="tools-section">
+        <div class="container">
+            <h2>Most Popular File Converter Tools</h2>
+            <div class="tools-grid" id="toolsGrid">
+                <!-- Tools will be populated by JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Conversion Modal -->
+    <div id="conversionModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <div class="modal-icon" id="modalIcon"><i class="fas fa-file-pdf"></i></div>
+                <h2 id="modalTitle">Tool Name</h2>
+            </div>
+
+            <div class="modal-body">
+                <!-- Step 1: Upload -->
+                <div id="uploadStep" class="step-content active">
+                    <div class="upload-area" id="dropZone">
+                        <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                        <p>Drag & Drop files here or</p>
+                        <button class="action-btn" id="selectFileBtn">Choose Files</button>
+                        <input type="file" id="fileInput" hidden>
+                        <p class="file-info" id="fileInfo">Max file size: 100MB</p>
+                    </div>
+
+                    <!-- Password Input Section (Hidden by default) -->
+                    <div id="passwordSection" style="display: none; margin-top: 15px; text-align: left;">
+                        <label for="pdfPassword" style="display: block; margin-bottom: 5px; font-weight: 500;">Set PDF
+                            Password:</label>
+                        <input type="password" id="pdfPassword" placeholder="Enter password"
+                            style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                    </div>
+                </div>
+
+                <!-- Step 2: Processing -->
+                <div id="processStep" class="step-content">
+                    <div class="progress-status">
+                        <p id="processStatusText">Uploading...</p>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" id="progressBar"></div>
+                        </div>
+                        <p class="percentage" id="progressPercent">0%</p>
+                    </div>
+                </div>
+
+                <!-- Step 3: Download -->
+                <div id="downloadStep" class="step-content">
+                    <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+                    <h3>Conversion Successful!</h3>
+                    <p id="resultFileName">document.pdf</p>
+                    <div class="action-buttons">
+                        <button class="action-btn download-btn" id="downloadBtn"><i class="fas fa-download"></i>
+                            Download</button>
+                        <button class="secondary-btn" id="convertAnotherBtn">Convert Another</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container" style="text-align: center;">
+            <p>&copy; 2026 Turbox File Converter All rights reserved.V1.0.0</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
